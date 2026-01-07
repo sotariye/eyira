@@ -7,7 +7,7 @@ const HowToCook: React.FC = () => {
       label: "Step 01: Pour",
       title: "Mix",
       desc: "Mix the sauce with three cups of rice and two cups of water. Stir until the color is deep and uniform.",
-      img: "/images/step-mix.jpg"
+      img: "https://drive.google.com/uc?export=view&id=1Z00x00Zop6-OIyJDraaeKBue5KebsjTa"
     },
     {
       num: "II",
