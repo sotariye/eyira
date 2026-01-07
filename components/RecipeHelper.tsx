@@ -24,7 +24,7 @@ const RecipeHelper: React.FC = () => {
           <span className="italic font-normal text-gray-400">Jollof rice?</span>
         </h3>
         <p className="font-sans text-eyira-grey font-light text-base md:text-lg mb-16 max-w-xl mx-auto leading-relaxed">
-          Whether you're surprising a partner or hosting the in-laws, we'll help you nail the culture and the flavour. Ask for advice on pairings, portions, or presentation.
+          Whether you're surprising a partner or hosting the in-laws, ask for advice on pairings, portions, or presentation.
         </p>
 
         <form onSubmit={handleSubmit} className="mb-20 relative max-w-2xl mx-auto">
