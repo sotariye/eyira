@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
         </p>
         <div className="flex flex-col items-center gap-6">
           <a
-            href="#/product/standard"
+            href="/product/standard"
             className="font-sans text-[12px] tracking-[0.4em] uppercase bg-black text-white px-16 py-6 hover:bg-zinc-800 transition-all duration-500 font-medium inline-block"
           >
             Shop Now

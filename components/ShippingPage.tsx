@@ -54,7 +54,7 @@ const ShippingPage: React.FC = () => {
             </div>
 
             <div className="mt-20 pt-10 border-t border-gray-100">
-                <a href="#/" className="font-sans text-[10px] tracking-[0.2em] uppercase text-black hover:opacity-50 transition-opacity">← Return Home</a>
+                <a href="/" className="font-sans text-[10px] tracking-[0.2em] uppercase text-black hover:opacity-50 transition-opacity">← Return Home</a>
             </div>
         </div>
     );

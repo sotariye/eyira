@@ -71,7 +71,7 @@ const CartDrawer: React.FC = () => {
                     {items.length === 0 ? (
                         <div className="h-full flex flex-col items-center justify-center text-center opacity-40">
                             <span className="font-serif text-4xl italic mb-4">It's empty.</span>
-                            <a href="#/product/standard" onClick={toggleCart} className="font-sans text-xs tracking-widest uppercase hover:text-black border-b border-transparent hover:border-black transition-all">Shop our products.</a>
+                            <a href="/product/standard" onClick={toggleCart} className="font-sans text-xs tracking-widest uppercase hover:text-black border-b border-transparent hover:border-black transition-all">Shop our products.</a>
                         </div>
                     ) : (
                         items.map((item) => (

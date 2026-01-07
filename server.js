@@ -47,8 +47,8 @@ app.post('/api/checkout', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: `${DOMAIN}/#/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${DOMAIN}/#/`,
+            success_url: `${DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${DOMAIN}/`,
             // automatic_tax: { enabled: true }, // Uncomment when ready
         };
 

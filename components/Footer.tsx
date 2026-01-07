@@ -22,8 +22,8 @@ const Footer: React.FC = () => {
               <h4 className="font-sans text-[11px] tracking-[0.3em] uppercase text-black font-semibold mb-8">Support</h4>
               <ul className="space-y-4 font-sans text-[11px] tracking-[0.2em] uppercase text-gray-500">
                 <li><a href="mailto:shopeyira@gmail.com" className="hover:text-black transition-colors">Contact Us</a></li>
-                <li><a href="#/faq" className="hover:text-black transition-colors">F.A.Q.</a></li>
-                <li><a href="#/shipping" className="hover:text-black transition-colors">Shipping</a></li>
+                <li><a href="/faq" className="hover:text-black transition-colors">F.A.Q.</a></li>
+                <li><a href="/shipping" className="hover:text-black transition-colors">Shipping</a></li>
               </ul>
             </div>
 
@@ -42,8 +42,8 @@ const Footer: React.FC = () => {
             Eyira Foods &copy; {currentYear} | Small-batch made in Canada.
           </p>
           <div className="flex gap-8 font-sans text-[10px] tracking-widest text-gray-400 uppercase">
-            <a href="#/terms" className="hover:text-black transition-colors">Terms</a>
-            <a href="#/privacy" className="hover:text-black transition-colors">Privacy</a>
+            <a href="/terms" className="hover:text-black transition-colors">Terms</a>
+            <a href="/privacy" className="hover:text-black transition-colors">Privacy</a>
           </div>
         </div>
       </div>

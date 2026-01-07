@@ -32,7 +32,7 @@ const SuccessPage: React.FC = () => {
                     Thank you for your order. We've sent a confirmation email with your tracking details. Time to get the rice ready.
                 </p>
                 <a
-                    href="#/"
+                    href="/"
                     className="font-sans text-[12px] tracking-[0.4em] uppercase bg-black text-white px-12 py-5 hover:bg-zinc-800 transition-all duration-500 font-medium inline-block"
                 >
                     Back to Home
