@@ -8,6 +8,7 @@ const SuccessPage: React.FC = () => {
     const sessionId = searchParams.get('session_id');
     const { clearCart } = useCart();
     const [session, setSession] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (sessionId) {
@@ -17,18 +18,34 @@ const SuccessPage: React.FC = () => {
             // Fetch secure session details
             fetch(`/api/get-session?id=${sessionId}`)
                 .then(res => res.json())
-                .then(data => setSession(data))
-                .catch(err => console.error('Error fetching session:', err));
+                .then(data => {
+                    setSession(data);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    console.error('Error fetching session:', err);
+                    setLoading(false);
+                });
+        } else {
+            // Case where no session ID is present (e.g. direct access)
+            setLoading(false);
         }
     }, [sessionId, clearCart]);
 
-    // Check delivery_type (returned from api/get-session)
     const isPickup = session?.delivery_type === 'pickup';
     const customerName = session?.customer_name?.split(' ')[0] || 'there';
 
-    // While loading session data, show default generic or loading state
-    // But to avoid flicker, we can default to generic 'Processing' until we know
+    // 1. Loading State
+    if (loading) {
+        return (
+            <div className="bg-white min-h-screen flex flex-col items-center justify-center">
+                <div className="w-12 h-12 border-4 border-gray-100 border-t-black rounded-full animate-spin mb-4"></div>
+                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-gray-400">Loading Order...</p>
+            </div>
+        );
+    }
 
+    // 2. Render Final State
     return (
         <div className="bg-white min-h-screen flex items-center justify-center animate-in fade-in duration-700">
             <div className="text-center px-6 max-w-lg mx-auto">
