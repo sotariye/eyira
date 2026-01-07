@@ -37,33 +37,46 @@ export default async function handler(req, res) {
         const customerEmail = session.customer_details?.email;
         const customerName = session.customer_details?.name || 'there';
 
-        // Critical: Check delivery method (Pickup vs Ship)
+        // Consistent metadata key: delivery_method (set in api/checkout.js)
         const deliveryMethod = session.metadata?.delivery_method;
 
         switch (event.type) {
             case 'checkout.session.completed':
                 console.log(`✅ Order Confirmed for ${customerEmail} (Method: ${deliveryMethod})`);
 
+                const emailContent = deliveryMethod === 'pickup' ? {
+                    subject: 'Order Confirmed: We’re prepping your Jollof! 🥣',
+                    headline: `We've received your order, ${customerName}!`,
+                    body: `We are currently prepping your <strong>Instant Jollof Sauce</strong> at our Ottawa kitchen.`,
+                    instructions: `
+            <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
+              <p style="margin: 0; font-weight: bold; color: #8B0000;">📍 Pickup Location: Ottawa (Boyd Ave Area)</p>
+              <p style="margin: 10px 0 0 0; font-size: 14px;">
+                <strong>Wait for the Next Email:</strong> To ensure your Jollof is fresh and ready, please wait for our "Ready for Collection" email which will contain the <strong>exact address and pickup window</strong>.
+              </p>
+            </div>`
+                } : {
+                    subject: 'Order Confirmed: Your Jollof is on the way! 🌶️',
+                    headline: `Your Jollof order is confirmed, ${customerName}!`,
+                    body: `We’ve received your payment and are getting your <strong>Instant Jollof Sauce</strong> ready for shipment. You will receive another email with a tracking number as soon as it leaves our kitchen.`,
+                    instructions: ''
+                };
+
                 await resend.emails.send({
                     from: 'Eyira Foods <support@eyira.shop>',
                     to: customerEmail,
-                    subject: deliveryMethod === 'pickup' ? 'Ready for Pickup! 🥡' : 'Your Order is Confirmed 📦',
+                    subject: emailContent.subject,
                     html: `
-            <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-              <h1 style="font-family: serif; font-weight: normal; font-size: 24px; margin-bottom: 20px;">Thanks for your order, ${customerName}!</h1>
-              <p>We have received your payment and are getting your Jollof Base ready.</p>
+            <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 30px; border-radius: 12px;">
+              <h1 style="color: #8B0000; margin-top: 0; font-family: serif;">${emailContent.headline}</h1>
+              <p style="font-size: 16px; line-height: 1.5; color: #444;">${emailContent.body}</p>
               
-              ${deliveryMethod === 'pickup'
-                            ? `<div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                     <strong>🥡 Local Pickup Instructions</strong><br/><br/>
-                     Pickup Location: <strong>Ottawa Kitchen</strong><br/>
-                     Address: 123 Example St, Ottawa, ON K1P 5J2<br/><br/>
-                     We will email you again when it is ready for collection.
-                   </div>`
-                            : `<p>We will notify you when your order has shipped.</p>`}
-              
-              <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;" />
-              <p style="font-size: 12px; color: #888;">Questions? Reply to this email or contact support@eyira.shop.</p>
+              ${emailContent.instructions}
+
+              <p style="font-size: 14px; color: #666; margin-top: 30px;">
+                Questions? Just reply to this email or contact support@eyira.shop.
+              </p>
+              <p style="font-weight: bold; color: #8B0000;">Stay spicy,<br/>The Eyira Team</p>
             </div>
           `
                 });
