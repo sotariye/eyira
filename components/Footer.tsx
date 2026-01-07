@@ -21,7 +21,6 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="font-sans text-[11px] tracking-[0.3em] uppercase text-black font-semibold mb-8">Support</h4>
               <ul className="space-y-4 font-sans text-[11px] tracking-[0.2em] uppercase text-gray-500">
-                <li><a href="mailto:shopeyira@gmail.com" className="hover:text-black transition-colors">Contact Us</a></li>
                 <li><a href="/faq" className="hover:text-black transition-colors">F.A.Q.</a></li>
                 <li><a href="/shipping" className="hover:text-black transition-colors">Shipping</a></li>
               </ul>
