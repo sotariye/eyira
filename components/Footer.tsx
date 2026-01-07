@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-4 font-sans text-[11px] tracking-[0.2em] uppercase text-gray-500">
                 <li><a href="mailto:hello@eyira.shop" className="hover:text-black transition-colors">Contact Us</a></li>
                 <li><a href="#/faq" className="hover:text-black transition-colors">F.A.Q.</a></li>
-                <li><a href="#shipping" className="hover:text-black transition-colors">Shipping</a></li>
+                <li><a href="#/shipping" className="hover:text-black transition-colors">Shipping</a></li>
               </ul>
             </div>
 
