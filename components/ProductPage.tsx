@@ -112,7 +112,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ initialSizeId = 'standard', o
                         </div>
                         <div className="grid grid-cols-2 gap-8">
                             <div className="aspect-square bg-gray-50 border border-gray-100 overflow-hidden">
-                                <img src="/images/step-mix.jpg" className="w-full h-full object-cover opacity-80" alt="Texture shot" />
+                                <img src="/images/step-mix-new.jpg" className="w-full h-full object-cover opacity-80" alt="Texture shot" />
                             </div>
                             <div className="aspect-square bg-gray-50 border border-gray-100 overflow-hidden">
                                 <img src="/images/step-serve.jpg" className="w-full h-full object-cover opacity-80" alt="Lifestyle shot" />
