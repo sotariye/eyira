@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
               <h4 className="font-sans text-[11px] tracking-[0.3em] uppercase text-black font-semibold mb-8">Connect</h4>
               <ul className="space-y-4 font-sans text-[11px] tracking-[0.2em] uppercase text-gray-500">
                 <li><a href="https://www.instagram.com/eyira.shop/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Instagram</a></li>
-                <li><a href="mailto:shopeyira@gmail.com" className="hover:text-black transition-colors">Contact Us</a></li>
+                <li><a href="mailto:support@eyira.shop" className="hover:text-black transition-colors">Contact Us</a></li>
               </ul>
             </div>
           </div>

@@ -47,7 +47,7 @@ const ShippingPage: React.FC = () => {
                 <section>
                     <h2 className="font-serif text-2xl text-black mb-4 normal-case">Damages & Issues</h2>
                     <p>
-                        Please inspect your order upon reception. If the item is defective, damaged, or if you received the wrong item, please contact us at <a href="mailto:shopeyira@gmail.com" className="text-black border-b border-black">shopeyira@gmail.com</a> immediately so that we can evaluate the issue and make it right.
+                        Please inspect your order upon reception. If the item is defective, damaged, or if you received the wrong item, please contact us at <a href="mailto:support@eyira.shop" className="text-black border-b border-black">support@eyira.shop</a> immediately so that we can evaluate the issue and make it right.
                     </p>
                 </section>
 

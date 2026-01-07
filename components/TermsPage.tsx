@@ -57,7 +57,7 @@ const TermsPage: React.FC = () => {
                     <div>
                         <h3 className="font-serif text-2xl text-black mb-6">4. Quality & Returns</h3>
                         <p>
-                            Due to the perishable nature of our artisanal bases, we do not accept returns. However, if your order arrives damaged or if you are unsatisfied with the quality, please contact our concierge at <a href="mailto:shopeyira@gmail.com" className="text-black border-b border-black pb-0.5 hover:opacity-50">shopeyira@gmail.com</a> within 14 days of receipt, and we will make it right.
+                            Due to the perishable nature of our artisanal bases, we do not accept returns. However, if your order arrives damaged or if you are unsatisfied with the quality, please contact our concierge at <a href="mailto:support@eyira.shop" className="text-black border-b border-black pb-0.5 hover:opacity-50">support@eyira.shop</a> within 14 days of receipt, and we will make it right.
                         </p>
                     </div>
 

@@ -53,7 +53,7 @@ export default async function handler(req, res) {
             // ---------------------------------------------------------
             try {
               await resend.emails.send({
-                from: 'Eyira <orders@eyira.shop>',
+                from: 'Eyira <support@eyira.shop>',
                 to: customerEmail,
                 subject: deliveryMethod === 'pickup' ? 'Ready for Pickup! 🥡' : 'Order Confirmed 📦',
                 html: `

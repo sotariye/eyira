@@ -15,7 +15,7 @@ Focus on: Taste, Effortless Hosting, and Results.
 Cooking: Jar + 3 cups rice + 2 cups water -> Oven (350F) -> 60 Mins.
 Ingredients: Slow-toasted tomato reduction (6 hours), firewood smoke infusion, plant-based glaze.
 Help users with: Dinner party ideas, portion sizes for guests, and what proteins to serve on the side.
-Support: If a user has an issue (broken jar, shipping), direct them to email shopeyira@gmail.com.`;
+Support: If a user has an issue (broken jar, shipping), direct them to email support@eyira.shop.`;
 
 export const getFastRecipeSuggestion = async (query: string): Promise<string> => {
   try {
