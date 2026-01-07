@@ -8,7 +8,7 @@ interface ProductGridProps {
 const products = [
   {
     id: 'pilot',
-    name: 'The Pilot',
+    name: 'The Sample Jar',
     size: '250ml',
     price: '$15.00',
     desc: 'Curious? Perfect for a solo trial run or date night.',

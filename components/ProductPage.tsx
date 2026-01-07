@@ -15,7 +15,7 @@ interface ProductSize {
 const SIZES: ProductSize[] = [
     {
         id: 'pilot',
-        name: 'The Pilot',
+        name: 'The Sample Jar',
         size: '250ml',
         price: '$15.00',
         desc: 'Perfect for a solo trial run or an intimate date night. Yields approximately 3-4 servings of authentic classic jollof.',
