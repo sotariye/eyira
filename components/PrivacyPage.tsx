@@ -64,7 +64,7 @@ const PrivacyPage: React.FC = () => {
                     <div>
                         <h3 className="font-serif text-2xl text-black mb-6">5. Questions</h3>
                         <p>
-                            If you would like to: access, correct, amend or delete any personal information we have about you, register a complaint, or simply want more information, contact our Privacy Compliance Officer at <a href="mailto:hello@eyira.shop" className="text-black border-b border-black pb-0.5 hover:opacity-50">hello@eyira.shop</a>.
+                            If you would like to: access, correct, amend or delete any personal information we have about you, register a complaint, or simply want more information, contact our Privacy Compliance Officer at <a href="mailto:shopeyira@gmail.com" className="text-black border-b border-black pb-0.5 hover:opacity-50">shopeyira@gmail.com</a>.
                         </p>
                     </div>
                 </div>

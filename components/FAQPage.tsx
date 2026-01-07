@@ -114,7 +114,7 @@ const FAQPage: React.FC<FAQPageProps> = ({ onBack }) => {
                     <h4 className="font-serif text-2xl mb-4">Still have questions?</h4>
                     <p className="font-sans text-sm text-gray-500 mb-8">Our culinary concierge is available to help with specific hosting needs.</p>
                     <a
-                        href="mailto:hello@eyira.shop"
+                        href="mailto:shopeyira@gmail.com"
                         className="font-sans text-[11px] tracking-[0.3em] uppercase text-black border-b border-black pb-1 hover:opacity-50 transition-opacity"
                     >
                         Email Support
