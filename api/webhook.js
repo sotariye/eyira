@@ -1,10 +1,9 @@
-
 // api/webhook.js
 import Stripe from 'stripe';
-// import { Resend } from 'resend'; // Uncomment after installing: pnpm add resend
+import { Resend } from 'resend';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-// const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const config = {
     api: {
@@ -44,30 +43,38 @@ export default async function handler(req, res) {
             // Extract details
             const customerEmail = session.customer_details?.email;
             const deliveryMethod = session.metadata?.delivery_method; // 'pickup' or undefined
+            const emailSubject = deliveryMethod === 'pickup' ? 'Ready for Pickup! 🥡' : 'Order Confirmed 📦';
 
-            console.log(`📧 Preparing to send email to ${customerEmail}. Method: ${deliveryMethod || 'shipping'}`);
+            console.log(`📧 Sending email to ${customerEmail}. Subject: ${emailSubject}`);
 
-            /* 
-            // ---------------------------------------------------------
-            // OPTION 2: SEND CUSTOM EMAIL VIA RESEND
-            // ---------------------------------------------------------
             try {
-              await resend.emails.send({
-                from: 'Eyira <support@eyira.shop>',
-                to: customerEmail,
-                subject: deliveryMethod === 'pickup' ? 'Ready for Pickup! 🥡' : 'Order Confirmed 📦',
-                html: `
-                  <h1>Thank you for your order!</h1>
-                  <p>We have received your payment.</p>
-                  ${deliveryMethod === 'pickup' 
-                    ? '<p><strong>Pickup Location:</strong><br/>Ottawa Kitchen<br/>(Address here)</p>' 
-                    : '<p>We will notify you when your order ships.</p>'}
-                `
-              });
+                await resend.emails.send({
+                    from: 'Eyira Foods <support@eyira.shop>',
+                    to: customerEmail,
+                    subject: emailSubject,
+                    html: `
+            <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h1 style="font-family: serif; font-weight: normal; font-size: 24px; margin-bottom: 20px;">Thank you for your order.</h1>
+              <p>We have received your payment and are getting your order ready.</p>
+              
+              ${deliveryMethod === 'pickup'
+                            ? `<div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                     <strong>🥡 Local Pickup Instructions</strong><br/><br/>
+                     Pickup Location: <strong>Ottawa Kitchen</strong><br/>
+                     Address: (Add Address Here)<br/><br/>
+                     We will email you again when it is ready for collection.
+                   </div>`
+                            : `<p>We will notify you when your order has shipped.</p>`}
+              
+              <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;" />
+              <p style="font-size: 12px; color: #888;">Questions? Reply to this email or contact support@eyira.shop.</p>
+            </div>
+          `
+                });
+                console.log('✅ Email sent successfully');
             } catch (emailError) {
-              console.error('Error sending email:', emailError);
+                console.error('❌ Error sending email:', emailError);
             }
-            */
         }
 
         res.status(200).json({ received: true });
