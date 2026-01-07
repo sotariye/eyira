@@ -56,8 +56,7 @@ async function fulfillCheckout(session) {
 
     try {
         await resend.emails.send({
-            // IMPORTANT: Use onboarding@resend.dev until you verify 'eyira.shop' in Resend Dashboard
-            from: 'Eyira Foods <onboarding@resend.dev>',
+            from: 'Eyira Foods <support@eyira.shop>',
             to: customerEmail,
             subject: emailContent.subject,
             html: `
