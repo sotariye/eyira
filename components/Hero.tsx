@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
     <section id="home" className="pt-48 pb-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center scroll-mt-24">
       <div className="w-full aspect-[16/8] bg-gray-50 mb-16 overflow-hidden relative border border-gray-100">
         <img
-          src="/images/hero-new.jpg"
+          src="/images/hero.jpg"
           alt="Artisanal Kitchen"
           className="w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-[3000ms]"
         />
