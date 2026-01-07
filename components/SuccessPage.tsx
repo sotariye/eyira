@@ -14,16 +14,17 @@ const SuccessPage: React.FC = () => {
             clearCart();
             window.scrollTo(0, 0);
 
-            // Fetch session details to determine if pickup vs shipping
-            fetch(`/api/session?id=${sessionId}`)
+            // Fetch secure session details
+            fetch(`/api/get-session?id=${sessionId}`)
                 .then(res => res.json())
                 .then(data => setSession(data))
                 .catch(err => console.error('Error fetching session:', err));
         }
     }, [sessionId, clearCart]);
 
-    const isPickup = session?.metadata?.delivery_method === 'pickup';
-    const customerName = session?.customer_details?.name?.split(' ')[0] || 'there';
+    // Check delivery_type (returned from api/get-session)
+    const isPickup = session?.delivery_type === 'pickup';
+    const customerName = session?.customer_name?.split(' ')[0] || 'there';
 
     // While loading session data, show default generic or loading state
     // But to avoid flicker, we can default to generic 'Processing' until we know
