@@ -11,12 +11,73 @@ export const config = {
     },
 };
 
+// Check for duplicate events (Note: In serverless, this only persists per instance)
+const processedSessions = new Set();
+
 async function buffer(readable) {
     const chunks = [];
     for await (const chunk of readable) {
         chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
     }
     return Buffer.concat(chunks);
+}
+
+// Logic to send proper email based on order type
+async function fulfillCheckout(session) {
+    if (processedSessions.has(session.id)) {
+        console.log(`ℹ️ Session ${session.id} already processed.`);
+        return;
+    }
+
+    const customerEmail = session.customer_details?.email;
+    const customerName = session.customer_details?.name || 'there';
+    // Consistent metadata key
+    const deliveryMethod = session.metadata?.delivery_method;
+
+    console.log(`✅ Processing Order: ${session.id} for ${customerEmail} (Method: ${deliveryMethod})`);
+
+    const emailContent = deliveryMethod === 'pickup' ? {
+        subject: 'Order Confirmed: We’re prepping your Jollof! 🥣',
+        headline: `We've received your order, ${customerName}!`,
+        body: `We are currently prepping your <strong>Instant Jollof Sauce</strong> at our Ottawa kitchen.`,
+        instructions: `
+            <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
+                <p style="margin: 0; font-weight: bold; color: #8B0000;">📍 Pickup Location: Ottawa (Boyd Ave Area)</p>
+                <p style="margin: 10px 0 0 0; font-size: 14px;">
+                <strong>Wait for the Next Email:</strong> To ensure your Jollof is fresh and ready, please wait for our "Ready for Collection" email which will contain the <strong>exact address and pickup window</strong>.
+                </p>
+            </div>`
+    } : {
+        subject: 'Order Confirmed: Your Jollof is on the way! 🌶️',
+        headline: `Your Jollof order is confirmed, ${customerName}!`,
+        body: `We’ve received your payment and are getting your <strong>Instant Jollof Sauce</strong> ready for shipment. You will receive another email with a tracking number as soon as it leaves our kitchen.`,
+        instructions: ''
+    };
+
+    try {
+        await resend.emails.send({
+            from: 'Eyira Foods <support@eyira.shop>',
+            to: customerEmail,
+            subject: emailContent.subject,
+            html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 30px; border-radius: 12px;">
+                <h1 style="color: #8B0000; margin-top: 0; font-family: serif;">${emailContent.headline}</h1>
+                <p style="font-size: 16px; line-height: 1.5; color: #444;">${emailContent.body}</p>
+                
+                ${emailContent.instructions}
+
+                <p style="font-size: 14px; color: #666; margin-top: 30px;">
+                Questions? Just reply to this email or contact support@eyira.shop.
+                </p>
+                <p style="font-weight: bold; color: #8B0000;">Stay spicy,<br/>The Eyira Team</p>
+            </div>
+            `
+        });
+        console.log('✅ Email sent via Resend.');
+        processedSessions.add(session.id);
+    } catch (e) {
+        console.error('❌ Resend Error:', e);
+    }
 }
 
 export default async function handler(req, res) {
@@ -34,69 +95,30 @@ export default async function handler(req, res) {
         }
 
         const session = event.data.object;
-        const customerEmail = session.customer_details?.email;
-        const customerName = session.customer_details?.name || 'there';
-
-        // Consistent metadata key: delivery_method (set in api/checkout.js)
-        const deliveryMethod = session.metadata?.delivery_method;
 
         switch (event.type) {
             case 'checkout.session.completed':
-                console.log(`✅ Order Confirmed for ${customerEmail} (Method: ${deliveryMethod})`);
-
-                const emailContent = deliveryMethod === 'pickup' ? {
-                    subject: 'Order Confirmed: We’re prepping your Jollof! 🥣',
-                    headline: `We've received your order, ${customerName}!`,
-                    body: `We are currently prepping your <strong>Instant Jollof Sauce</strong> at our Ottawa kitchen.`,
-                    instructions: `
-            <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
-              <p style="margin: 0; font-weight: bold; color: #8B0000;">📍 Pickup Location: Ottawa (Boyd Ave Area)</p>
-              <p style="margin: 10px 0 0 0; font-size: 14px;">
-                <strong>Wait for the Next Email:</strong> To ensure your Jollof is fresh and ready, please wait for our "Ready for Collection" email which will contain the <strong>exact address and pickup window</strong>.
-              </p>
-            </div>`
-                } : {
-                    subject: 'Order Confirmed: Your Jollof is on the way! 🌶️',
-                    headline: `Your Jollof order is confirmed, ${customerName}!`,
-                    body: `We’ve received your payment and are getting your <strong>Instant Jollof Sauce</strong> ready for shipment. You will receive another email with a tracking number as soon as it leaves our kitchen.`,
-                    instructions: ''
-                };
-
-                await resend.emails.send({
-                    from: 'Eyira Foods <support@eyira.shop>',
-                    to: customerEmail,
-                    subject: emailContent.subject,
-                    html: `
-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 30px; border-radius: 12px;">
-              <h1 style="color: #8B0000; margin-top: 0; font-family: serif;">${emailContent.headline}</h1>
-              <p style="font-size: 16px; line-height: 1.5; color: #444;">${emailContent.body}</p>
-              
-              ${emailContent.instructions}
-
-              <p style="font-size: 14px; color: #666; margin-top: 30px;">
-                Questions? Just reply to this email or contact support@eyira.shop.
-              </p>
-              <p style="font-weight: bold; color: #8B0000;">Stay spicy,<br/>The Eyira Team</p>
-            </div>
-          `
-                });
+                await fulfillCheckout(session);
                 break;
 
             case 'checkout.session.expired':
+                const customerEmail = session.customer_details?.email;
                 if (customerEmail) {
-                    console.log(`🛒 Abandoned Cart email for ${customerEmail}`);
-                    await resend.emails.send({
-                        from: 'Eyira Foods <support@eyira.shop>',
-                        to: customerEmail,
-                        subject: 'Did you forget your Jollof? 🌶️',
-                        html: `
-                <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-                    <h2 style="font-family: serif;">Still hungry, ${customerName}?</h2>
-                    <p>It looks like you left some Instant Jollof Sauce in your cart.</p>
-                    <p><a href="https://eyira.shop" style="color: black; text-decoration: underline;">Return to checkout</a></p>
-                </div>
-            `
-                    });
+                    try {
+                        await resend.emails.send({
+                            from: 'Eyira Foods <support@eyira.shop>',
+                            to: customerEmail,
+                            subject: 'Did you forget your Jollof? 🌶️',
+                            html: `
+                  <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+                      <h2 style="font-family: serif;">Still hungry?</h2>
+                      <p>It looks like you left some Instant Jollof Sauce in your cart.</p>
+                      <p><a href="https://eyira.shop" style="color: black; text-decoration: underline;">Return to checkout</a></p>
+                  </div>
+              `
+                        });
+                        console.log('✅ Abandoned Cart Email sent.');
+                    } catch (e) { console.error(e); }
                 }
                 break;
 
