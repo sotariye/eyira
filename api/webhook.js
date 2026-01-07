@@ -56,7 +56,8 @@ async function fulfillCheckout(session) {
 
     try {
         await resend.emails.send({
-            from: 'Eyira Foods <support@eyira.shop>',
+            // IMPORTANT: Use onboarding@resend.dev until you verify 'eyira.shop' in Resend Dashboard
+            from: 'Eyira Foods <onboarding@resend.dev>',
             to: customerEmail,
             subject: emailContent.subject,
             html: `
@@ -76,7 +77,9 @@ async function fulfillCheckout(session) {
         console.log('✅ Email sent via Resend.');
         processedSessions.add(session.id);
     } catch (e) {
-        console.error('❌ Resend Error:', e);
+        console.error('❌ Resend Error (Check Resend Dashboard):', e);
+        // Throwing error allows Stripe to retry webhooks if it was a temporary failure
+        // throw e; 
     }
 }
 
