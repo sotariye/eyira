@@ -87,6 +87,14 @@ export default async function handler(req, res) {
     try {
         event = stripe.webhooks.constructEvent(buf, sig, process.env.STRIPE_WEBHOOK_SECRET);
         console.log('✅ Signature Verified. Event Type:', event.type);
+
+        // IGNORE OLD EVENTS (Stops "Zombie" Retries)
+        // If the event is older than 1 hour, we acknowledge it (200 OK) but do nothing.
+        const eventAge = Math.floor(Date.now() / 1000) - event.created;
+        if (eventAge > 3600) {
+            console.log(`⚠️ Silencing retry for old event (Age: ${eventAge}s)`);
+            return res.json({ received: true });
+        }
     } catch (err) {
         console.error(`❌ Webhook Signature Error: ${err.message}`);
         return res.status(400).send(`Webhook Error: ${err.message}`);
