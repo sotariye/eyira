@@ -18,7 +18,6 @@ export default async function handler(req, res) {
         });
 
         // Return only necessary, safe data
-        // Note: session.metadata.delivery_method matches what we set in checkout
         res.status(200).json({
             customer_name: session.customer_details?.name,
             delivery_type: session.metadata?.delivery_method,
@@ -26,6 +25,7 @@ export default async function handler(req, res) {
             line_items: session.line_items.data,
         });
     } catch (err) {
+        console.error('❌ Error fetching session from Stripe:', err.message);
         res.status(500).json({ error: err.message });
     }
 }
