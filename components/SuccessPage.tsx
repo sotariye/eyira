@@ -47,27 +47,33 @@ const SuccessPage: React.FC = () => {
     }
 
     // 2. Render Final State
+    const hasError = !session && !loading;
+
     return (
-        <div className="bg-white min-h-screen flex flex-col items-center pt-40 pb-20 animate-in fade-in duration-700">
+        <div className="bg-white min-h-screen flex flex-col items-center pt-32 pb-20 animate-in fade-in duration-700">
             <div className="text-center px-6 max-w-lg mx-auto">
-                <span className="font-sans text-[10px] tracking-[0.3em] text-gray-400 block mb-8 uppercase font-medium">Order Confirmed</span>
-                <div className="w-20 h-20 bg-gray-50 rounded-full mx-auto mb-8 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="font-sans text-[10px] tracking-[0.3em] text-gray-400 block mb-6 uppercase font-medium">Order Confirmed</span>
+                <div className="w-16 h-16 bg-gray-50 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
 
                 <h1 className="font-serif text-4xl md:text-5xl text-black font-medium leading-tight mb-6">
-                    {isPickup ? `See you soon, ${customerName === 'Jollof Lover' ? 'Jollof Lover' : customerName}.` : (
+                    {hasError ? 'Order Confirmed.' : (isPickup ? `See you soon, ${customerName === 'Jollof Lover' ? 'Jollof Lover' : customerName}.` : (
                         <>
                             It's on <br />
                             <span className="italic font-normal text-gray-400">the way.</span>
                         </>
-                    )}
+                    ))}
                 </h1>
 
                 <div className="font-sans text-eyira-grey font-light leading-relaxed text-base md:text-lg mb-12">
-                    {isPickup ? (
+                    {hasError ? (
+                        <p className="text-gray-600">
+                            Thank you for your order. We've sent a detailed confirmation email to your inbox.
+                        </p>
+                    ) : (isPickup ? (
                         <>
                             <p className="mb-8 text-gray-600">Your order is being prepped in <strong>Ottawa (Boyd Ave area)</strong>.</p>
                             <div className="bg-[#fdfcf0] p-6 rounded-lg border border-[#f1ebd4] max-w-sm mx-auto text-left shadow-sm">
@@ -81,7 +87,7 @@ const SuccessPage: React.FC = () => {
                         <p className="text-gray-600">
                             Thank you for your order. We've sent a confirmation email with your tracking details. Time to get the rice ready.
                         </p>
-                    )}
+                    ))}
                 </div>
 
                 <a
