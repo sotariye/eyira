@@ -30,7 +30,7 @@ async function fulfillCheckout(session) {
     }
 
     const customerEmail = session.customer_details?.email;
-    const customerName = session.customer_details?.name || 'there';
+    const customerName = session.customer_details?.name || session.shipping_details?.name || 'Jollof Lover';
 
     console.log(`✅ Processing Order: ${session.id} for ${customerEmail}`);
 

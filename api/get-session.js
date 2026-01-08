@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         const method = session?.metadata?.delivery_method || session?.metadata?.delivery_type || 'shipping';
 
         return res.status(200).json({
-            customer_name: session?.customer_details?.name || 'Customer',
+            customer_name: session?.customer_details?.name || session?.shipping_details?.name || 'Jollof Lover',
             delivery_type: method,
             status: session?.payment_status || 'complete'
         });
