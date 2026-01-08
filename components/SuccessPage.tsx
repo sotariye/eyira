@@ -50,7 +50,7 @@ const SuccessPage: React.FC = () => {
     return (
         <div className="bg-white min-h-screen flex flex-col items-center pt-32 pb-20 animate-in fade-in duration-700">
             <div className="text-center px-6 max-w-lg mx-auto">
-                <span className="font-sans text-[10px] tracking-[0.3em] text-gray-400 block mb-6 uppercase font-medium">Order Confirmed</span>
+
                 <div className="w-16 h-16 bg-gray-50 rounded-full mx-auto mb-6 flex items-center justify-center">
                     <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 13l4 4L19 7" />
