@@ -48,6 +48,10 @@ const SuccessPage: React.FC = () => {
 
     // 2. Render Final State
     const hasError = !session && !loading;
+    // Explicitly check for shipping to avoid falling through to it on unknown/error states
+    const isShipping = session?.delivery_type === 'shipping';
+
+    const showGeneric = hasError || (!isPickup && !isShipping);
 
     return (
         <div className="bg-white min-h-screen flex flex-col items-center pt-32 pb-20 animate-in fade-in duration-700">
@@ -60,7 +64,7 @@ const SuccessPage: React.FC = () => {
                 </div>
 
                 <h1 className="font-serif text-4xl md:text-5xl text-black font-medium leading-tight mb-6">
-                    {hasError ? 'Order Confirmed.' : (isPickup ? `See you soon, ${customerName === 'Jollof Lover' ? 'Jollof Lover' : customerName}.` : (
+                    {showGeneric ? 'Order Confirmed.' : (isPickup ? `See you soon, ${customerName === 'Jollof Lover' ? 'Jollof Lover' : customerName}.` : (
                         <>
                             It's on <br />
                             <span className="italic font-normal text-gray-400">the way.</span>
@@ -69,7 +73,7 @@ const SuccessPage: React.FC = () => {
                 </h1>
 
                 <div className="font-sans text-eyira-grey font-light leading-relaxed text-base md:text-lg mb-12">
-                    {hasError ? (
+                    {showGeneric ? (
                         <p className="text-gray-600">
                             Thank you for your order. We've sent a detailed confirmation email to your inbox.
                         </p>

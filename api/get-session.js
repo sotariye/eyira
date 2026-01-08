@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     try {
         if (!id || !id.startsWith('cs_')) {
             // Return default instead of error to prevent UI crash loops
-            return res.status(200).json({ customer_name: 'Customer', delivery_type: 'shipping' });
+            return res.status(200).json({ customer_name: 'Customer', delivery_type: null });
         }
 
         const session = await stripe.checkout.sessions.retrieve(id, {
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         // Even if it fails, return a basic object so the UI doesn't loop/glitch
         return res.status(200).json({
             customer_name: 'Customer',
-            delivery_type: 'shipping'
+            delivery_type: null
         });
     }
 }
