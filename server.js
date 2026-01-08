@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import Stripe from 'stripe';
+import { Resend } from 'resend';
 
 dotenv.config({ path: '.env.local' });
 
@@ -11,6 +12,8 @@ if (!process.env.STRIPE_SECRET_KEY) {
     console.warn('⚠️  STRIPE_SECRET_KEY is missing in .env.local. Checkout will fail.');
 }
 const stripe = new Stripe(stripeKey);
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const app = express();
 
 app.use(cors());
@@ -21,7 +24,9 @@ const DOMAIN = 'http://localhost:3001';
 
 app.post('/api/checkout', async (req, res) => {
     try {
+        console.log('📦 Checkout Request Body:', req.body); // DEBUG
         const { items, deliveryMethod } = req.body;
+        console.log('🚚 Delivery Method:', deliveryMethod); // DEBUG
 
         const lineItems = items.map((item) => {
             return {
@@ -45,7 +50,7 @@ app.post('/api/checkout', async (req, res) => {
             line_items: lineItems,
             mode: 'payment',
             metadata: {
-                delivery_type: deliveryMethod, // 'pickup' or 'ship'
+                delivery_type: deliveryMethod,
                 delivery_method: deliveryMethod
             },
             success_url: `${DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -87,6 +92,63 @@ app.post('/api/checkout', async (req, res) => {
         console.error('Error creating checkout session:', error);
         res.status(500).json({ error: error.message });
     }
+});
+
+// LOCAL WEBHOOK TEST ENDPOINT
+app.post('/api/webhook', async (req, res) => {
+    // In local test, we bypass signature verification
+    const event = req.body;
+    console.log(`🔔 Local Webhook received event: ${event.type}`);
+
+    const session = event.data?.object;
+    const customerEmail = session?.customer_details?.email;
+    const customerName = session?.customer_details?.name || 'there';
+    // Robust check for delivery method
+    const deliveryMethod = session?.metadata?.delivery_method || session?.metadata?.delivery_type;
+
+    if (event.type === 'checkout.session.completed') {
+        console.log(`✅ Order Confirmed for ${customerEmail} (Method: ${deliveryMethod})`);
+
+        // Generic Email for ALL orders (Pickup & Shipping)
+        const emailContent = {
+            subject: 'Eyira | Thank you for your purchase!',
+            headline: `We've received your order, ${customerName}!`,
+            body: `We are currently getting your <strong>Instant Jollof Sauce</strong> ready in our kitchen.`,
+            instructions: `
+                <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
+                    <p style="margin: 0; font-size: 14px;">
+                    <strong>What happens next?</strong><br/>
+                    We will email you again as soon as your order has been shipped or is ready for pickup.
+                    </p>
+                </div>`
+        };
+
+        try {
+            await resend.emails.send({
+                from: 'Eyira Foods <support@eyira.shop>',
+                to: customerEmail,
+                subject: emailContent.subject,
+                html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 30px; border-radius: 12px;">
+                  <h1 style="color: #8B0000; margin-top: 0; font-family: serif;">${emailContent.headline}</h1>
+                  <p style="font-size: 16px; line-height: 1.5; color: #444;">${emailContent.body}</p>
+                  
+                  ${emailContent.instructions}
+
+                  <p style="font-size: 14px; color: #666; margin-top: 30px;">
+                    Questions? Just reply to this email or contact support@eyira.shop.
+                  </p>
+                  <p style="font-weight: bold; color: #8B0000;">Stay spicy,<br/>The Eyira Team</p>
+                </div>
+              `
+            });
+            console.log('✅ Email sent via Resend!');
+        } catch (e) {
+            console.error('❌ Resend Error:', e);
+        }
+    }
+
+    res.json({ received: true });
 });
 
 const PORT = 4242;

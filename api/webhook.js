@@ -36,22 +36,18 @@ async function fulfillCheckout(session) {
 
     console.log(`✅ Processing Order: ${session.id} for ${customerEmail} (Method: ${deliveryMethod})`);
 
-    const emailContent = deliveryMethod === 'pickup' ? {
-        subject: 'Order Confirmed: We’re prepping your Jollof! 🥣',
+    // Generic Email for ALL orders (Pickup & Shipping)
+    const emailContent = {
+        subject: 'Eyira | Thank you for your purchase!',
         headline: `We've received your order, ${customerName}!`,
-        body: `We are currently prepping your <strong>Instant Jollof Sauce</strong> at our Ottawa kitchen.`,
+        body: `We are currently getting your <strong>Instant Jollof Sauce</strong> ready in our kitchen.`,
         instructions: `
             <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
-                <p style="margin: 0; font-weight: bold; color: #8B0000;">📍 Pickup Location: Ottawa (Boyd Ave Area)</p>
-                <p style="margin: 10px 0 0 0; font-size: 14px;">
-                <strong>Wait for the Next Email:</strong> To ensure your Jollof is fresh and ready, please wait for our "Ready for Collection" email which will contain the <strong>exact address and pickup window</strong>.
+                <p style="margin: 0; font-size: 14px;">
+                <strong>What happens next?</strong><br/>
+                We will email you again as soon as your order has been shipped or is ready for pickup.
                 </p>
             </div>`
-    } : {
-        subject: 'Order Confirmed: Your Jollof is on the way! 🌶️',
-        headline: `Your Jollof order is confirmed, ${customerName}!`,
-        body: `We’ve received your payment and are getting your <strong>Instant Jollof Sauce</strong> ready for shipment. You will receive another email with a tracking number as soon as it leaves our kitchen.`,
-        instructions: ''
     };
 
     try {
