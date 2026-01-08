@@ -49,6 +49,7 @@ app.post('/api/checkout', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
+            allow_promotion_codes: true, // Enable coupon codes
             metadata: {
                 delivery_type: deliveryMethod,
                 delivery_method: deliveryMethod
