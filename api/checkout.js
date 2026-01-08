@@ -29,16 +29,18 @@ export default async function handler(req, res) {
                 payment_method_types: ['card'],
                 line_items: lineItems,
                 mode: 'payment',
+                // Explicitly adding delivery type to metadata for all orders
+                metadata: {
+                    delivery_type: deliveryMethod, // 'pickup' or 'ship'
+                    delivery_method: deliveryMethod // legacy/redundant but good for safety
+                },
                 success_url: `${DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${DOMAIN}/`,
-                // automatic_tax: { enabled: true }, 
             };
 
             if (deliveryMethod === 'pickup') {
                 // PICKUP MODE
-                sessionConfig.metadata = { delivery_method: 'pickup' };
                 sessionConfig.phone_number_collection = { enabled: true };
-
                 // Add visual reminder
                 sessionConfig.custom_text = {
                     submit: {
