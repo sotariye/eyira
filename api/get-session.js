@@ -11,7 +11,9 @@ export default async function handler(req, res) {
             return res.status(200).json({ customer_name: 'Customer', delivery_type: 'shipping' });
         }
 
-        const session = await stripe.checkout.sessions.retrieve(id);
+        const session = await stripe.checkout.sessions.retrieve(id, {
+            expand: ['line_items', 'customer_details']
+        });
 
         // SAFETY: Use optional chaining (?.) and default values everywhere.
         // We map 'delivery_method' (from checkout) to 'delivery_type' (for frontend).
