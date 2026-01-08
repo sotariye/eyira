@@ -29,6 +29,7 @@ export default async function handler(req, res) {
                 payment_method_types: ['card'],
                 line_items: lineItems,
                 mode: 'payment',
+                billing_address_collection: 'required', // Forces Name + Address even for $0 orders
                 allow_promotion_codes: true, // Enable coupon codes
                 // Explicitly adding delivery type to metadata for all orders
                 metadata: {
