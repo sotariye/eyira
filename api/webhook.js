@@ -107,9 +107,7 @@ export default async function handler(req, res) {
             const isPickup = session.metadata?.delivery_type === 'pickup';
 
             // 3. Conditional Content
-            const emailSubject = isPickup
-                ? `Ready for Prep: Your Eyira Pickup Order, ${firstName}! 🥣`
-                : `Order Confirmed: Your Jollof is on the way, ${firstName}! 🌶️`;
+            const emailSubject = 'Eyira - Order Confirmed!';
 
             const deliveryMessage = isPickup
                 ? `We are prepping your order for <strong>pickup at our Ottawa Kitchen</strong>. Watch your inbox for the exact Boyd Ave address once it's ready!`
