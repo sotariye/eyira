@@ -97,7 +97,37 @@ export default async function handler(req, res) {
 
     switch (event.type) {
         case 'checkout.session.completed':
-            await fulfillCheckout(session);
+            const customerEmail = session.customer_details?.email;
+
+            // 1. Better Name Handling
+            const rawName = session.customer_details?.name || session.shipping_details?.name;
+            const firstName = rawName ? rawName.split(' ')[0] : 'Jollof Lover';
+
+            // 2. Identify Delivery Type (Matches your Stripe Metadata)
+            const isPickup = session.metadata?.delivery_type === 'pickup';
+
+            // 3. Conditional Content
+            const emailSubject = isPickup
+                ? `Ready for Prep: Your Eyira Pickup Order, ${firstName}! 🥣`
+                : `Order Confirmed: Your Jollof is on the way, ${firstName}! 🌶️`;
+
+            const deliveryMessage = isPickup
+                ? `We are prepping your order for <strong>pickup at our Ottawa Kitchen</strong>. Watch your inbox for the exact Boyd Ave address once it's ready!`
+                : `Your Jollof is being packed! We'll email you a tracking number shortly once it leaves the kitchen.`;
+
+            await resend.emails.send({
+                from: 'Eyira Foods <support@eyira.shop>',
+                to: customerEmail,
+                subject: emailSubject,
+                html: `
+              <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px;">
+                <h1 style="color: #8B0000;">Thanks for your order, ${firstName}!</h1>
+                <p style="font-size: 16px; line-height: 1.5;">${deliveryMessage}</p>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                <p style="font-size: 14px; color: #666;">Order ID: ${session.id.slice(-8).toUpperCase()}</p>
+              </div>
+            `
+            });
             break;
 
         case 'checkout.session.expired': {
