@@ -83,16 +83,21 @@ export default async function handler(req, res) {
         const buf = await buffer(req);
         const sig = req.headers['stripe-signature'];
 
+        console.log('🔔 Webhook received. Signature present:', !!sig);
+
         let event;
 
         try {
             event = stripe.webhooks.constructEvent(buf, sig, process.env.STRIPE_WEBHOOK_SECRET);
+            console.log('✅ Signature Verified. Event Type:', event.type);
         } catch (err) {
-            console.error(`❌ Webhook Error: ${err.message}`);
+            console.error(`❌ Webhook Signature Error: ${err.message}`);
+            // Return 400 but log it clearly
             return res.status(400).send(`Webhook Error: ${err.message}`);
         }
 
         const session = event.data.object;
+        console.log('Processing session:', session?.id);
 
         switch (event.type) {
             case 'checkout.session.completed':
