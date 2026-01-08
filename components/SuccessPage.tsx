@@ -32,9 +32,7 @@ const SuccessPage: React.FC = () => {
         }
     }, [sessionId, clearCart]);
 
-    const isPickup = session?.delivery_type === 'pickup';
-    const rawName = session?.customer_name || 'there';
-    const customerName = rawName === 'Jollof Lover' ? rawName : rawName.split(' ')[0];
+
 
     // 1. Loading State
     if (loading) {
@@ -47,11 +45,7 @@ const SuccessPage: React.FC = () => {
     }
 
     // 2. Render Final State
-    const hasError = !session && !loading;
-    // Explicitly check for shipping to avoid falling through to it on unknown/error states
-    const isShipping = session?.delivery_type === 'shipping';
 
-    const showGeneric = hasError || (!isPickup && !isShipping);
 
     return (
         <div className="bg-white min-h-screen flex flex-col items-center pt-32 pb-20 animate-in fade-in duration-700">
@@ -64,34 +58,13 @@ const SuccessPage: React.FC = () => {
                 </div>
 
                 <h1 className="font-serif text-4xl md:text-5xl text-black font-medium leading-tight mb-6">
-                    {showGeneric ? 'Order Confirmed.' : (isPickup ? `See you soon, ${customerName === 'Jollof Lover' ? 'Jollof Lover' : customerName}.` : (
-                        <>
-                            It's on <br />
-                            <span className="italic font-normal text-gray-400">the way.</span>
-                        </>
-                    ))}
+                    Order Confirmed.
                 </h1>
 
                 <div className="font-sans text-eyira-grey font-light leading-relaxed text-base md:text-lg mb-12">
-                    {showGeneric ? (
-                        <p className="text-gray-600">
-                            Thank you for your order. We've sent a detailed confirmation email to your inbox.
-                        </p>
-                    ) : (isPickup ? (
-                        <>
-                            <p className="mb-8 text-gray-600">Your order is being prepped in <strong>Ottawa (Boyd Ave area)</strong>.</p>
-                            <div className="bg-[#fdfcf0] p-6 rounded-lg border border-[#f1ebd4] max-w-sm mx-auto text-left shadow-sm">
-                                <p className="text-sm text-gray-800 leading-relaxed">
-                                    <strong className="block mb-1 text-[#8B0000]">What Happens Next?</strong>
-                                    Wait for our "Ready for Collection" email. It will contain the exact address and unit number.
-                                </p>
-                            </div>
-                        </>
-                    ) : (
-                        <p className="text-gray-600">
-                            Thank you for your order. We've sent a confirmation email with your tracking details. Time to get the rice ready.
-                        </p>
-                    ))}
+                    <p className="text-gray-600">
+                        Thank you for your order. We've sent a detailed confirmation email to your inbox with all the next steps.
+                    </p>
                 </div>
 
                 <a
