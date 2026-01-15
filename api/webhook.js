@@ -11,62 +11,12 @@ export const config = {
     },
 };
 
-// Check for duplicate events (Note: In serverless, this only persists per instance)
-const processedSessions = new Set();
-
 async function buffer(readable) {
     const chunks = [];
     for await (const chunk of readable) {
         chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
     }
     return Buffer.concat(chunks);
-}
-
-// Logic to send proper email based on order type
-async function fulfillCheckout(session) {
-    if (processedSessions.has(session.id)) {
-        console.log(`ℹ️ Session ${session.id} already processed.`);
-        return;
-    }
-
-    const customerEmail = session.customer_details?.email;
-    const customerName = session.customer_details?.name || session.shipping_details?.name || 'Jollof Lover';
-
-    console.log(`✅ Processing Order: ${session.id} for ${customerEmail}`);
-
-    try {
-        await resend.emails.send({
-            from: 'Eyira Foods <support@eyira.shop>',
-            to: customerEmail,
-            subject: 'Order Confirmed: Your Jollof Sauce is being prepped! 🌶️',
-            html: `
-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 30px; border-radius: 12px;">
-                <h1 style="color: #8B0000; margin-top: 0;">Thanks for your order, ${customerName}!</h1>
-                <p style="font-size: 16px; line-height: 1.5; color: #444;">
-                  We’ve received your payment and our kitchen is officially in Jollof-mode. 
-                  Whether you're picking up or waiting for a delivery, we've got you covered.
-                </p>
-                
-                <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
-                  <p style="margin: 0; font-weight: bold; color: #8B0000;">What Happens Next?</p>
-                  <ul style="padding-left: 20px; color: #444;">
-                    <li><strong>Shipping:</strong> You'll get a tracking number once your jar leaves the kitchen.</li>
-                    <li><strong>Pickup:</strong> Watch your inbox for a "Ready for Collection" email with our Ottawa address (Boyd Ave) and pickup times.</li>
-                  </ul>
-                </div>
-
-                <p style="font-size: 14px; color: #666; margin-top: 30px;">
-                  Questions? Just reply to this email or contact <strong>support@eyira.shop</strong>.
-                </p>
-                <p style="font-weight: bold; color: #8B0000;">Stay spicy,<br/>The Eyira Team</p>
-            </div>
-            `
-        });
-        console.log('✅ Email sent via Resend.');
-        processedSessions.add(session.id);
-    } catch (e) {
-        console.error('❌ Resend Error (Check Resend Dashboard):', e);
-    }
 }
 
 export default async function handler(req, res) {
