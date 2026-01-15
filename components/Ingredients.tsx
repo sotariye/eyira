@@ -4,7 +4,7 @@ const Ingredients: React.FC = () => {
 
 
   return (
-    <section id="blueprint" className="py-32 px-6 md:px-12 bg-white border-t border-gray-50 scroll-mt-24">
+    <section id="blueprint" className="pt-32 pb-20 px-6 md:px-12 bg-white border-t border-gray-50 scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-24 max-w-2xl">
@@ -45,7 +45,7 @@ const Ingredients: React.FC = () => {
             <div className="mb-12">
               <h5 className="font-serif text-4xl text-black mb-4">One Base. Infinite Results.</h5>
               <p className="font-sans text-eyira-grey font-light leading-relaxed text-base max-w-2xl">
-                While optimized for the perfect Oven Jollof, our base is a versatile shortcut for the modern host. It is the secret ingredient for any dish that requires depth, heat, and soul.
+                While optimized for the perfect Oven Jollof, our base is a versatile shortcut for any dish that requires a fried tomato-stew base.
               </p>
             </div>
 
@@ -101,11 +101,7 @@ const Ingredients: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-16 text-right opacity-60">
-              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-gray-400">
-                Note: Technically for Jollof. Practically for everything else.
-              </p>
-            </div>
+
           </div>
 
         </div>
