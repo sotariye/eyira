@@ -10,8 +10,8 @@ const Ingredients: React.FC = () => {
         <div className="mb-24 max-w-2xl">
           <span className="font-sans text-[10px] tracking-[0.4em] text-gray-400 block mb-6 uppercase font-medium">The Blueprint</span>
           <h3 className="font-serif text-5xl md:text-7xl text-black font-medium leading-[1.1]">
-            Precision <br />
-            <span className="italic font-normal text-gray-300">Engineered Flavor.</span>
+            One Base. <br />
+            <span className="italic font-normal text-gray-300">Infinite Results.</span>
           </h3>
         </div>
 
