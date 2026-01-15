@@ -36,6 +36,7 @@ const Home = () => {
   return (
     <>
       <Hero />
+      <TrustTicker />
       <Introduction />
       <ProductGrid onProductClick={(id) => navigate(`/product/${id}`)} />
       <HowToCook />
@@ -54,8 +55,8 @@ const App: React.FC = () => {
   return (
     <Router>
       <CartProvider>
-        <div className="min-h-screen flex flex-col font-sans selection:bg-black selection:text-white bg-white pt-7">
-          <TrustTicker />
+
+        <div className="min-h-screen flex flex-col font-sans selection:bg-black selection:text-white bg-white">
           <Navbar />
           <CartDrawer />
 
