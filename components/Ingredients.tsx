@@ -33,9 +33,7 @@ const Ingredients: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-2">
-                  <span className="inline-block px-3 py-2 bg-gray-50 text-[10px] tracking-[0.2em] uppercase text-gray-500 font-medium">Status: Ready to Deploy</span>
-                </div>
+
               </div>
             </div>
           </div>
