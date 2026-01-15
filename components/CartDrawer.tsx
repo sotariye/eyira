@@ -146,7 +146,7 @@ const CartDrawer: React.FC = () => {
                         {deliveryMethod === 'local' && (
                             <div className="font-sans text-[10px] text-black text-center mb-8 border border-gray-200 bg-white p-3">
                                 <p className="mb-1"><strong>Free Local Delivery</strong> available in Ottawa.</p>
-                                <p className="text-gray-500">We'll drop it off at your door (Boyd Ave area).</p>
+                                <p className="text-gray-500">We'll drop it off at your door.</p>
                             </div>
                         )}
 
