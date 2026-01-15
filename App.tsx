@@ -48,11 +48,14 @@ const Home = () => {
   );
 };
 
+import { TrustTicker } from './components/TrustTicker';
+
 const App: React.FC = () => {
   return (
     <Router>
       <CartProvider>
-        <div className="min-h-screen flex flex-col font-sans selection:bg-black selection:text-white bg-white">
+        <div className="min-h-screen flex flex-col font-sans selection:bg-black selection:text-white bg-white pt-7">
+          <TrustTicker />
           <Navbar />
           <CartDrawer />
 
