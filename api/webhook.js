@@ -68,8 +68,8 @@ export default async function handler(req, res) {
             const emailSubject = 'Eyira - Order Confirmed!';
 
             const deliveryMessage = isLocal
-                ? `We are prepping your order for <strong>local delivery in Ottawa</strong>. Sit tight, we'll bring the Jollof to you.`
-                : `Your Jollof is being packed! We'll email you a tracking number shortly once it leaves the kitchen.`;
+                ? `We are prepping your order for <strong>local delivery in Ottawa</strong>.`
+                : `Your order is being packed! We'll email you a tracking number shortly once it leaves the kitchen.`;
 
             await resend.emails.send({
                 from: 'Eyira Foods <support@eyira.shop>',
@@ -104,11 +104,11 @@ export default async function handler(req, res) {
                     await resend.emails.send({
                         from: 'Eyira Foods <support@eyira.shop>',
                         to: customerEmail,
-                        subject: 'Did you forget your Jollof? 🌶️',
+                        subject: 'Did you forget your order? 🌶️',
                         html: `
                   <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
                       <h2 style="font-family: serif;">Still hungry?</h2>
-                      <p>It looks like you left some Instant Jollof Sauce in your cart.</p>
+                      <p>It looks like you left your order in your cart.</p>
                       <p><a href="https://eyira.shop" style="color: black; text-decoration: underline;">Return to checkout</a></p>
                   </div>
               `
