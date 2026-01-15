@@ -1,48 +1,110 @@
 import React from 'react';
 
 const Ingredients: React.FC = () => {
-  const items = [
-    {
-      name: "The Reduction.",
-      desc: "Double-concentrated tomato reduction for that deep, rich red colour."
-    },
-    {
-      name: "The Spices.",
-      desc: "Our signature spice blend for that perfectly seasoned taste."
-    },
-    {
-      name: "The Finish.",
-      desc: "Plant-based butter integrated for that signature party-jollof shine."
-    }
-  ];
+
 
   return (
-    <section id="blueprint" className="py-40 px-6 md:px-12 bg-white border-t border-gray-50 scroll-mt-24">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
-          <div className="lg:col-span-5">
-            <span className="font-sans text-[12px] tracking-[0.4em] text-gray-500 block mb-10 uppercase font-medium">The Blueprint</span>
-            <h3 className="font-serif text-5xl md:text-6xl text-black font-medium leading-[1.2]">
-              Precision <br />
-              <span className="italic font-normal text-gray-300">Engineered Flavour.</span>
-            </h3>
-            <div className="h-px w-24 bg-gray-100 mt-16"></div>
-          </div>
+    <section id="blueprint" className="py-32 px-6 md:px-12 bg-white border-t border-gray-50 scroll-mt-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="mb-24 max-w-2xl">
+          <span className="font-sans text-[10px] tracking-[0.4em] text-gray-400 block mb-6 uppercase font-medium">The Blueprint</span>
+          <h3 className="font-serif text-5xl md:text-7xl text-black font-medium leading-[1.1]">
+            Precision <br />
+            <span className="italic font-normal text-gray-300">Engineered Flavor.</span>
+          </h3>
+        </div>
 
-          <div className="lg:col-span-7">
-            <div className="space-y-32">
-              {items.map((item, idx) => (
-                <div key={idx} className="flex flex-col gap-6 group">
-                  <h4 className="font-serif text-3xl text-black font-medium tracking-tight group-hover:text-gray-400 transition-colors duration-500">
-                    {item.name}
-                  </h4>
-                  <p className="font-sans text-lg text-eyira-grey font-light leading-relaxed max-w-xl">
-                    {item.desc}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
+
+          {/* LEFT COLUMN: THE COMPONENT (Technical Specs) */}
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32">
+              <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-black border-b border-black pb-4 mb-8">01 / The Component</h4>
+
+              <div className="space-y-8 pr-8">
+                <div>
+                  <h5 className="font-serif text-3xl text-black mb-4">Technical Specs.</h5>
+                  <p className="font-sans text-eyira-grey font-light leading-relaxed text-sm mb-4">
+                    A high-viscosity reduction of vine-ripened tomatoes, scotch bonnet peppers, and red onions.
+                  </p>
+                  <p className="font-sans text-eyira-grey font-light leading-relaxed text-sm">
+                    We handle the 4-hour reduction process so you don't have to. Double-concentrated, spice-infused, and finished with plant-based butter for that signature gloss.
                   </p>
                 </div>
-              ))}
+
+                <div className="pt-2">
+                  <span className="inline-block px-3 py-2 bg-gray-50 text-[10px] tracking-[0.2em] uppercase text-gray-500 font-medium">Status: Ready to Deploy</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* RIGHT COLUMN: SYSTEM COMPATIBILITY (Assemblies) */}
+          <div className="lg:col-span-8">
+            <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-gray-400 border-b border-gray-100 pb-4 mb-10">02 / System Compatibility</h4>
+
+            <div className="flex flex-col">
+              {/* Item 1 */}
+              <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
+                <div className="md:w-1/3 mb-2 md:mb-0">
+                  <h5 className="font-serif text-2xl text-black">Jollof (Standard)</h5>
+                </div>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light">Method: Add rice + water + bake.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">15 min prep</span>
+                </div>
+              </div>
+
+              {/* Item 2 */}
+              <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
+                <div className="md:w-1/3 mb-2 md:mb-0">
+                  <h5 className="font-serif text-2xl text-black">West African Pasta</h5>
+                </div>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light">Method: Toss with al dente rigatoni + splash of pasta water.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">10 min</span>
+                </div>
+              </div>
+
+              {/* Item 3 */}
+              <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
+                <div className="md:w-1/3 mb-2 md:mb-0">
+                  <h5 className="font-serif text-2xl text-black">The Sunday Stew</h5>
+                </div>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light">Method: Sear protein + add Eyira + simmer.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">15 min</span>
+                </div>
+              </div>
+
+              {/* Item 4 */}
+              <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
+                <div className="md:w-1/3 mb-2 md:mb-0">
+                  <h5 className="font-serif text-2xl text-black">Shakshuka / Eggs</h5>
+                </div>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light">Method: Simmer base + crack eggs + cover.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">12 min</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 text-right opacity-60">
+              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-gray-400">
+                Note: Technically for Jollof. Practically for everything else.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
