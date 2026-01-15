@@ -58,10 +58,28 @@ app.post('/api/checkout', async (req, res) => {
             cancel_url: `${DOMAIN}/`,
         };
 
-        if (deliveryMethod === 'pickup') {
+        if (deliveryMethod === 'local') {
+            // LOCAL DELIVERY MODE (Ottawa)
             sessionConfig.phone_number_collection = { enabled: true };
+
+            // We need the address for delivery
+            sessionConfig.shipping_address_collection = { allowed_countries: ['CA'] };
+
+            // Add a "Free" shipping option for Local Delivery
+            sessionConfig.shipping_options = [{
+                shipping_rate_data: {
+                    type: 'fixed_amount',
+                    fixed_amount: { amount: 0, currency: 'cad' },
+                    display_name: 'Local Delivery (Ottawa)',
+                    delivery_estimate: {
+                        minimum: { unit: 'business_day', value: 1 },
+                        maximum: { unit: 'business_day', value: 2 },
+                    },
+                },
+            }];
+
             sessionConfig.custom_text = {
-                submit: { message: 'You are placing a PICKUP order for our Ottawa Kitchen.' },
+                submit: { message: 'You are placing a LOCAL DELIVERY order for Ottawa.' },
             };
         } else {
             const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -119,7 +137,7 @@ app.post('/api/webhook', async (req, res) => {
                 <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
                     <p style="margin: 0; font-size: 14px;">
                     <strong>What happens next?</strong><br/>
-                    We will email you again as soon as your order has been shipped or is ready for pickup.
+                    We will email you again as soon as your order has been shipped or is out for delivery.
                     </p>
                 </div>`
         };

@@ -112,13 +112,13 @@ export default async function handler(req, res) {
             const firstName = rawName ? rawName.split(' ')[0] : 'Jollof Lover';
 
             // 2. Identify Delivery Type (Matches your Stripe Metadata)
-            const isPickup = session.metadata?.delivery_type === 'pickup';
+            const isLocal = session.metadata?.delivery_type === 'local';
 
             // 3. Conditional Content
             const emailSubject = 'Eyira - Order Confirmed!';
 
-            const deliveryMessage = isPickup
-                ? `We are prepping your order for <strong>pickup at our Ottawa Kitchen</strong>. Watch your inbox for the exact Boyd Ave address once it's ready!`
+            const deliveryMessage = isLocal
+                ? `We are prepping your order for <strong>local delivery in Ottawa</strong>. Sit tight, we'll bring the Jollof to you.`
                 : `Your Jollof is being packed! We'll email you a tracking number shortly once it leaves the kitchen.`;
 
             await resend.emails.send({
@@ -130,7 +130,18 @@ export default async function handler(req, res) {
                 <h1 style="color: #8B0000;">Thanks for your order, ${firstName}!</h1>
                 <p style="font-size: 16px; line-height: 1.5;">${deliveryMessage}</p>
                 <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-                <p style="font-size: 14px; color: #666;">Order ID: ${session.id.slice(-8).toUpperCase()}</p>
+                
+                <div style="background-color: #fdfcf0; padding: 20px; border: 1px solid #f1ebd4; border-radius: 8px; margin: 20px 0;">
+                  <p style="margin: 0; font-weight: bold; color: #8B0000;">What Happens Next?</p>
+                  <ul style="padding-left: 20px; color: #444; margin-top: 10px;">
+                    ${isLocal
+                        ? '<li><strong>Local Delivery:</strong> We will drop off your order at the address provided. Watch your inbox for updates!</li>'
+                        : '<li><strong>Shipping:</strong> You\'ll get a tracking number once your jar leaves the kitchen.</li>'
+                    }
+                  </ul>
+                </div>
+
+                <p style="font-size: 14px; color: #666; margin-top: 20px;">Order ID: ${session.id.slice(-8).toUpperCase()}</p>
               </div>
             `
             });

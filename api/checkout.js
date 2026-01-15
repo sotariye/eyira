@@ -40,13 +40,30 @@ export default async function handler(req, res) {
                 cancel_url: `${DOMAIN}/`,
             };
 
-            if (deliveryMethod === 'pickup') {
-                // PICKUP MODE
+            if (deliveryMethod === 'local') {
+                // LOCAL DELIVERY MODE (Ottawa)
                 sessionConfig.phone_number_collection = { enabled: true };
-                // Add visual reminder
+
+                // We need the address for delivery, even if it's local
+                sessionConfig.shipping_address_collection = { allowed_countries: ['CA'] };
+
+                // Add a "Free" shipping option so the UI explicitly says "Local Delivery"
+                sessionConfig.shipping_options = [{
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: { amount: 0, currency: 'cad' },
+                        display_name: 'Local Delivery (Ottawa)',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 1 },
+                            maximum: { unit: 'business_day', value: 2 },
+                        },
+                    },
+                }];
+
+                // Visual reminder
                 sessionConfig.custom_text = {
                     submit: {
-                        message: 'You are placing a PICKUP order for our Ottawa Kitchen.',
+                        message: 'You are placing a LOCAL DELIVERY order for Ottawa.',
                     },
                 };
             } else {

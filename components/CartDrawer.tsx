@@ -6,7 +6,7 @@ const CartDrawer: React.FC = () => {
     const { items, isOpen, toggleCart, updateQuantity, removeFromCart, cartTotal } = useCart();
 
     // Delivery Method State
-    const [deliveryMethod, setDeliveryMethod] = useState<'ship' | 'pickup'>('ship');
+    const [deliveryMethod, setDeliveryMethod] = useState<'ship' | 'local'>('ship');
 
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -130,11 +130,11 @@ const CartDrawer: React.FC = () => {
                                 Ship
                             </button>
                             <button
-                                onClick={() => setDeliveryMethod('pickup')}
-                                className={`flex-1 py-3 text-[10px] uppercase tracking-[0.2em] font-medium transition-all rounded-md ${deliveryMethod === 'pickup' ? 'bg-white shadow-sm text-black' : 'text-gray-400 hover:text-gray-600'
+                                onClick={() => setDeliveryMethod('local')}
+                                className={`flex-1 py-3 text-[10px] uppercase tracking-[0.2em] font-medium transition-all rounded-md ${deliveryMethod === 'local' ? 'bg-white shadow-sm text-black' : 'text-gray-400 hover:text-gray-600'
                                     }`}
                             >
-                                Pickup
+                                Local Delivery
                             </button>
                         </div>
 
@@ -143,10 +143,11 @@ const CartDrawer: React.FC = () => {
                             <span className="font-serif text-2xl">${cartTotal.toFixed(2)}</span>
                         </div>
 
-                        {deliveryMethod === 'pickup' && (
-                            <p className="font-sans text-[10px] text-black text-center mb-8 border border-gray-200 bg-white p-3">
-                                Pickup available at our <strong>Ottawa</strong> kitchen.<br />Address provided in email.
-                            </p>
+                        {deliveryMethod === 'local' && (
+                            <div className="font-sans text-[10px] text-black text-center mb-8 border border-gray-200 bg-white p-3">
+                                <p className="mb-1"><strong>Free Local Delivery</strong> available in Ottawa.</p>
+                                <p className="text-gray-500">We'll drop it off at your door (Boyd Ave area).</p>
+                            </div>
                         )}
 
                         {deliveryMethod === 'ship' && (
