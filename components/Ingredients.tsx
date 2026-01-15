@@ -17,19 +17,19 @@ const Ingredients: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
 
-          {/* LEFT COLUMN: THE COMPONENT (Technical Specs) */}
+          {/* LEFT COLUMN: THE CORE (The Hard Part) */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
-              <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-black border-b border-black pb-4 mb-8">01 / The Component</h4>
+              <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-black border-b border-black pb-4 mb-8">01 / The Core</h4>
 
               <div className="space-y-8 pr-8">
                 <div>
-                  <h5 className="font-serif text-3xl text-black mb-4">Technical Specs.</h5>
+                  <h5 className="font-serif text-3xl text-black mb-4">The Hard Part.</h5>
                   <p className="font-sans text-eyira-grey font-light leading-relaxed text-sm mb-4">
-                    A high-viscosity reduction of vine-ripened tomatoes, scotch bonnet peppers, and red onions.
+                    Authentic flavor is a commitment—hours of patient frying and precise reducing until the base is just right. We’ve handled that labor so you don't have to.
                   </p>
                   <p className="font-sans text-eyira-grey font-light leading-relaxed text-sm">
-                    We handle the 4-hour reduction process so you don't have to. Double-concentrated, spice-infused, and finished with plant-based butter for that signature gloss.
+                    Eyira is a double-concentrated, spice-infused reduction designed to be the consistent foundation for your kitchen, whether you’re following the blueprint or making it up as you go.
                   </p>
                 </div>
 
@@ -40,21 +40,25 @@ const Ingredients: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: SYSTEM COMPATIBILITY (Assemblies) */}
+          {/* RIGHT COLUMN: VERSATILITY (One Base. Infinite Results.) */}
           <div className="lg:col-span-8">
-            <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-gray-400 border-b border-gray-100 pb-4 mb-10">02 / System Compatibility</h4>
+            <h4 className="font-sans text-[11px] tracking-[0.2em] uppercase text-gray-400 border-b border-gray-100 pb-4 mb-10">02 / Versatility</h4>
+
+            <div className="mb-12">
+              <h5 className="font-serif text-4xl text-black mb-4">One Base. Infinite Results.</h5>
+              <p className="font-sans text-eyira-grey font-light leading-relaxed text-base max-w-2xl">
+                While optimized for the perfect Oven Jollof, our base is a versatile shortcut for the modern host. It is the secret ingredient for any dish that requires depth, heat, and soul.
+              </p>
+            </div>
 
             <div className="flex flex-col">
               {/* Item 1 */}
               <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
                 <div className="md:w-1/3 mb-2 md:mb-0">
-                  <h5 className="font-serif text-2xl text-black">Jollof (Standard)</h5>
+                  <h5 className="font-serif text-2xl text-black">Jollof (The Standard)</h5>
                 </div>
-                <div className="md:w-1/2 mb-2 md:mb-0">
-                  <p className="font-sans text-sm text-gray-500 font-light">Method: Add rice + water + bake.</p>
-                </div>
-                <div className="md:w-auto text-right">
-                  <span className="font-mono text-xs text-gray-400">15 min prep</span>
+                <div className="md:w-2/3">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Wash your rice, add the base, and leave to bake in the oven.</p>
                 </div>
               </div>
 
@@ -63,11 +67,8 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">West African Pasta</h5>
                 </div>
-                <div className="md:w-1/2 mb-2 md:mb-0">
-                  <p className="font-sans text-sm text-gray-500 font-light">Method: Toss with al dente rigatoni + splash of pasta water.</p>
-                </div>
-                <div className="md:w-auto text-right">
-                  <span className="font-mono text-xs text-gray-400">10 min</span>
+                <div className="md:w-2/3">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Toss with al dente pasta and a splash of pasta water for an instant classic.</p>
                 </div>
               </div>
 
@@ -76,24 +77,28 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">The Sunday Stew</h5>
                 </div>
-                <div className="md:w-1/2 mb-2 md:mb-0">
-                  <p className="font-sans text-sm text-gray-500 font-light">Method: Sear protein + add Eyira + simmer.</p>
-                </div>
-                <div className="md:w-auto text-right">
-                  <span className="font-mono text-xs text-gray-400">15 min</span>
+                <div className="md:w-2/3">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Add the base to seared protein and simmer for professional results in minutes.</p>
                 </div>
               </div>
 
               {/* Item 4 */}
               <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
                 <div className="md:w-1/3 mb-2 md:mb-0">
-                  <h5 className="font-serif text-2xl text-black">Shakshuka / Eggs</h5>
+                  <h5 className="font-serif text-2xl text-black">Concoction Rice</h5>
                 </div>
-                <div className="md:w-1/2 mb-2 md:mb-0">
-                  <p className="font-sans text-sm text-gray-500 font-light">Method: Simmer base + crack eggs + cover.</p>
+                <div className="md:w-2/3">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Stir the base into white rice with smoked fish and crayfish for a quick, one-pot savory meal.</p>
                 </div>
-                <div className="md:w-auto text-right">
-                  <span className="font-mono text-xs text-gray-400">12 min</span>
+              </div>
+
+              {/* Item 5 */}
+              <div className="group flex flex-col md:flex-row md:items-baseline justify-between py-8 border-b border-gray-100 hover:border-black transition-colors duration-500">
+                <div className="md:w-1/3 mb-2 md:mb-0">
+                  <h5 className="font-serif text-2xl text-black">Nigerian Egg Sauce</h5>
+                </div>
+                <div className="md:w-2/3">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Sauté the base with onions and fold in whisked eggs for the ultimate breakfast pairing.</p>
                 </div>
               </div>
             </div>
