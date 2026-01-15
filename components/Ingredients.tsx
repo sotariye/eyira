@@ -44,8 +44,11 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">Jollof (The Standard)</h5>
                 </div>
-                <div className="md:w-2/3">
-                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Wash your rice, add the base, and leave to bake in the oven.</p>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Wash rice, add base, and leave to bake.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">2 min prep</span>
                 </div>
               </div>
 
@@ -54,8 +57,11 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">West African Pasta</h5>
                 </div>
-                <div className="md:w-2/3">
-                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Toss with al dente pasta and a splash of pasta water for an instant classic.</p>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Toss with al dente pasta + a splash of pasta water.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">2 min prep</span>
                 </div>
               </div>
 
@@ -64,8 +70,11 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">The Sunday Stew</h5>
                 </div>
-                <div className="md:w-2/3">
-                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Add the base to seared protein and simmer for professional results in minutes.</p>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Add base to seared protein and simmer.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">5 min prep</span>
                 </div>
               </div>
 
@@ -74,8 +83,11 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">Concoction Rice</h5>
                 </div>
-                <div className="md:w-2/3">
-                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Stir the base into white rice with smoked fish and crayfish for a quick, one-pot savory meal.</p>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Stir base into white rice with smoked fish and crayfish.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">3 min prep</span>
                 </div>
               </div>
 
@@ -84,8 +96,11 @@ const Ingredients: React.FC = () => {
                 <div className="md:w-1/3 mb-2 md:mb-0">
                   <h5 className="font-serif text-2xl text-black">Nigerian Egg Sauce</h5>
                 </div>
-                <div className="md:w-2/3">
-                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Sauté the base with onions and fold in whisked eggs for the ultimate breakfast pairing.</p>
+                <div className="md:w-1/2 mb-2 md:mb-0">
+                  <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">Sauté base with onions and fold in whisked eggs.</p>
+                </div>
+                <div className="md:w-auto text-right">
+                  <span className="font-mono text-xs text-gray-400">5 min prep</span>
                 </div>
               </div>
             </div>
