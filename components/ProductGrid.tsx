@@ -141,7 +141,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
               className={`w-full py-5 flex items-center justify-center font-sans text-[12px] tracking-[0.4em] uppercase transition-all duration-500 font-medium ${addedItems[products[2].id] ? 'bg-gray-100 text-gray-400' : 'bg-black text-white hover:bg-zinc-800'
                 }`}
             >
-              {addedItems[products[2].id] ? 'Added to Cart' : 'Get the Monthly Stash'}
+              {addedItems[products[2].id] ? 'Added to Cart' : 'Add to Cart'}
             </button>
           </div>
         </div>
