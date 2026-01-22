@@ -66,7 +66,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ initialSizeId = 'standard', o
         // Use the images from the main site
         let imageUrl = '/images/product-single.jpg';
         if (selectedSize.id === 'standard') imageUrl = '/images/product-standard.jpg';
-        if (selectedSize.id === 'lazy-chef') imageUrl = '/images/lazy_chef_box_4pack.png';
+        if (selectedSize.id === 'lazy-chef') imageUrl = '/images/lazy_chef_box_4pack.jpg';
 
         addToCart({
             id: selectedSize.id,

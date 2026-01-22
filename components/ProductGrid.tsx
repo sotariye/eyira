@@ -29,7 +29,7 @@ const products = [
     price: '$55.00',
     comparePrice: '$60.00',
     desc: "Cooking shouldn't require a measuring cup. We’ve bundled 4 of our single-pot jars (250ml) so you can make perfect Jollof every time. One jar = One medium tray.",
-    img: '/images/lazy_chef_box_4pack.png'
+    img: '/images/lazy_chef_box_4pack.jpg'
   }
 ];
 
