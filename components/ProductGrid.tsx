@@ -23,12 +23,13 @@ const products = [
     img: '/images/product-standard.jpg'
   },
   {
-    id: 'hungry-man',
-    name: 'The Hungry Man',
-    size: '1L',
-    price: '$48.00',
-    desc: 'For serious meal preppers. Best value.',
-    img: '/images/product-hungry-man.jpg'
+    id: 'lazy-chef',
+    name: 'The Lazy Chef Box',
+    size: '4 x 250ml',
+    price: '$55.00',
+    comparePrice: '$60.00',
+    desc: "Cooking shouldn't require a measuring cup. We’ve bundled 4 of our single-pot jars (250ml) so you can make perfect Jollof every time. One jar = One medium tray.",
+    img: '/images/lazy_chef_box_4pack.png'
   }
 ];
 
@@ -119,7 +120,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
         {/* Product 3: Large Central Anchor */}
         <div className="flex flex-col md:flex-row items-center gap-16 md:gap-32 pt-24">
           <div
-            className="w-full aspect-square md:aspect-[4/3] bg-gray-50 mb-12 border border-gray-100 overflow-hidden grayscale-[10%] hover:grayscale-0 transition-all duration-700 cursor-pointer"
+            className="w-full aspect-square md:aspect-[4/3] bg-gray-50 mb-12 border border-gray-100 overflow-hidden grayscale-[0%] transition-all duration-700 cursor-pointer"
             onClick={() => onProductClick(products[2].id)}
           >
             <img src={products[2].img} alt={products[2].name} className="w-full h-full object-cover opacity-90" />
@@ -128,13 +129,19 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
             <span className="font-sans text-[11px] tracking-[0.4em] text-gray-500 mb-6 uppercase font-medium">{products[2].size}</span>
             <h4 className="font-serif text-5xl text-eyira-grey mb-6 font-medium leading-tight">{products[2].name}</h4>
             <p className="font-sans text-eyira-grey font-light mb-10 leading-relaxed text-lg">{products[2].desc}</p>
-            <p className="font-serif text-3xl text-black mb-12">{products[2].price}</p>
+            <div className="flex items-baseline gap-4 mb-12">
+              <p className="font-serif text-3xl text-black">{products[2].price}</p>
+              {'comparePrice' in products[2] && (
+                <p className="font-serif text-xl text-gray-400 line-through">{(products[2] as any).comparePrice}</p>
+              )}
+            </div>
+
             <button
               onClick={() => handleAddToCart(products[2])}
               className={`w-full py-6 font-sans text-[12px] tracking-[0.4em] uppercase transition-all duration-500 font-medium ${addedItems[products[2].id] ? 'bg-gray-100 text-gray-400' : 'bg-black text-white hover:bg-zinc-800'
                 }`}
             >
-              {addedItems[products[2].id] ? 'Added to Cart' : 'Add To Cart'}
+              {addedItems[products[2].id] ? 'Added to Cart' : 'Get the Monthly Stash'}
             </button>
           </div>
         </div>

@@ -10,6 +10,7 @@ interface ProductSize {
     price: string;
     desc: string;
     note: string;
+    comparePrice?: string;
 }
 
 const SIZES: ProductSize[] = [
@@ -30,12 +31,13 @@ const SIZES: ProductSize[] = [
         note: 'The Host\'s Choice.'
     },
     {
-        id: 'hungry-man',
-        name: 'The Hungry Man',
-        size: '1L',
-        price: '$48.00',
-        desc: 'For the serious host or the meal-prep enthusiast. Yields 18-20 servings. Maximum flavour, maximum value.',
-        note: 'Best Value.'
+        id: 'lazy-chef',
+        name: 'The Lazy Chef Box',
+        size: '4 x 250ml',
+        price: '$55.00',
+        comparePrice: '$60.00',
+        desc: "Cooking shouldn't require a measuring cup. We’ve bundled 4 of our single-pot jars (250ml) so you can make perfect Jollof every time. One jar = One medium tray.",
+        note: 'The Monthly Stash'
     }
 ];
 
@@ -64,7 +66,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ initialSizeId = 'standard', o
         // Use the images from the main site
         let imageUrl = '/images/product-single.jpg';
         if (selectedSize.id === 'standard') imageUrl = '/images/product-standard.jpg';
-        if (selectedSize.id === 'hungry-man') imageUrl = '/images/product-hungry-man.jpg';
+        if (selectedSize.id === 'lazy-chef') imageUrl = '/images/lazy_chef_box_4pack.png';
 
         addToCart({
             id: selectedSize.id,
@@ -104,7 +106,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ initialSizeId = 'standard', o
                                 src={
                                     selectedSize.id === 'pilot' ? '/images/product-single.jpg' :
                                         selectedSize.id === 'standard' ? '/images/product-standard.jpg' :
-                                            '/images/product-hungry-man.jpg'
+                                            '/images/lazy_chef_box_4pack.png'
                                 }
                                 alt={`Eyira Base - ${selectedSize.name}`}
                                 className="w-full h-full object-cover grayscale-[5%] hover:scale-105 transition-transform duration-[3000ms]"
@@ -127,7 +129,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ initialSizeId = 'standard', o
                             <h1 className="font-serif text-5xl md:text-6xl text-black font-medium mb-6 leading-tight">
                                 The <br />Jollof Base.
                             </h1>
-                            <p className="font-serif text-3xl text-eyira-grey italic">{selectedSize.price}</p>
+                            <div className="flex items-baseline gap-4">
+                                <p className="font-serif text-3xl text-eyira-grey italic">{selectedSize.price}</p>
+                                {selectedSize.comparePrice && (
+                                    <p className="font-serif text-xl text-gray-300 line-through italic">{selectedSize.comparePrice}</p>
+                                )}
+                            </div>
                         </div>
 
                         {/* Size Selector */}

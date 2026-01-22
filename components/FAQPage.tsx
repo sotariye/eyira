@@ -33,7 +33,7 @@ const FAQ_DATA = [
             },
             {
                 q: "How many people does one jar serve?",
-                a: "The Standard (500ml) serves 8-10 people. The Sample Jar (250ml) is perfect for 3-4, and The Hungry Man (1L) comfortably feeds a gathering of 20."
+                a: "The Standard (500ml) serves 8-10 people. The Sample Jar (250ml) is perfect for 3-4, and The Lazy Chef Box (4 x 250ml) gives you the flexibility of 4 separate jars for multiple meals."
             }
         ]
     },
