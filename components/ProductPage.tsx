@@ -106,7 +106,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ initialSizeId = 'standard', o
                                 src={
                                     selectedSize.id === 'pilot' ? '/images/product-single.jpg' :
                                         selectedSize.id === 'standard' ? '/images/product-standard.jpg' :
-                                            '/images/lazy_chef_box_4pack.png'
+                                            '/images/lazy_chef_box_4pack.jpg'
                                 }
                                 alt={`Eyira Base - ${selectedSize.name}`}
                                 className="w-full h-full object-cover grayscale-[5%] hover:scale-105 transition-transform duration-[3000ms]"
