@@ -120,7 +120,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
         {/* Product 3: Large Central Anchor */}
         <div className="flex flex-col md:flex-row items-center gap-16 md:gap-32 pt-24">
           <div
-            className="w-full aspect-square md:aspect-[4/3] bg-gray-50 mb-12 border border-gray-100 overflow-hidden grayscale-[0%] transition-all duration-700 cursor-pointer"
+            className="w-full aspect-square md:aspect-[3/2] bg-gray-50 mb-12 border border-gray-100 overflow-hidden grayscale-[0%] transition-all duration-700 cursor-pointer"
             onClick={() => onProductClick(products[2].id)}
           >
             <img src={products[2].img} alt={products[2].name} className="w-full h-full object-cover opacity-90" />
@@ -129,7 +129,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
             <span className="font-sans text-[11px] tracking-[0.4em] text-gray-500 mb-6 uppercase font-medium">{products[2].size}</span>
             <h4 className="font-serif text-5xl text-eyira-grey mb-6 font-medium leading-tight">{products[2].name}</h4>
             <p className="font-sans text-eyira-grey font-light mb-10 leading-relaxed text-lg">{products[2].desc}</p>
-            <div className="flex items-baseline gap-4 mb-12">
+            <div className="flex items-baseline gap-4 mb-8">
               <p className="font-serif text-3xl text-black">{products[2].price}</p>
               {'comparePrice' in products[2] && (
                 <p className="font-serif text-xl text-gray-400 line-through">{(products[2] as any).comparePrice}</p>
@@ -138,7 +138,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
 
             <button
               onClick={() => handleAddToCart(products[2])}
-              className={`w-full py-6 font-sans text-[12px] tracking-[0.4em] uppercase transition-all duration-500 font-medium ${addedItems[products[2].id] ? 'bg-gray-100 text-gray-400' : 'bg-black text-white hover:bg-zinc-800'
+              className={`w-full py-5 font-sans text-[12px] tracking-[0.4em] uppercase transition-all duration-500 font-medium ${addedItems[products[2].id] ? 'bg-gray-100 text-gray-400' : 'bg-black text-white hover:bg-zinc-800'
                 }`}
             >
               {addedItems[products[2].id] ? 'Added to Cart' : 'Get the Monthly Stash'}
