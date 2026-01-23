@@ -34,8 +34,8 @@ const AboutPage: React.FC = () => {
                     </div>
                     <div className="aspect-[4/5] bg-gray-50 overflow-hidden relative">
                         <img
-                            src="/images/about_chef_tasting.png"
-                            alt="Chef tasting the rich tomato stew"
+                            src="/images/about_texture_spoon.png"
+                            alt="Rich tomato stew reduction on a spoon"
                             className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000"
                         />
                     </div>
