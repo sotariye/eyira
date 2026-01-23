@@ -37,8 +37,6 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <TrustTicker />
-      <Introduction />
       <ProductGrid onProductClick={(id) => navigate(`/product/${id}`)} />
       <HowToCook />
       <div className="h-12 md:h-20" />

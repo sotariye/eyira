@@ -31,7 +31,8 @@ const HowToCook: React.FC = () => {
         <div className="mb-24 text-center max-w-4xl mx-auto">
           <span className="font-sans text-[12px] tracking-[0.5em] text-gray-500 block mb-10 uppercase font-medium">The Oven Jollof Method</span>
           <h2 className="font-serif text-6xl md:text-8xl text-eyira-grey font-medium leading-[1.1] mb-12 tracking-tight">
-            How It <span className="italic font-normal text-gray-300">Works.</span>
+            Cook Jollof Rice <br />
+            <span className="italic font-normal text-gray-300">Like A Pro.</span>
           </h2>
           <div className="inline-flex items-center gap-4 md:gap-8 px-8 md:px-12 py-6 border border-gray-100 bg-[#FCFCFC] rounded-full">
             <span className="font-serif text-xl md:text-2xl italic text-gray-400">Oven Jollof</span>
