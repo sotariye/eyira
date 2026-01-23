@@ -12,6 +12,7 @@ import ProductPage from './components/ProductPage';
 import FAQPage from './components/FAQPage';
 import TermsPage from './components/TermsPage';
 import PrivacyPage from './components/PrivacyPage';
+import AboutPage from './components/AboutPage';
 import SuccessPage from './components/SuccessPage';
 import ShippingPage from './components/ShippingPage';
 import { CartProvider } from './context/CartContext';
@@ -67,6 +68,7 @@ const App: React.FC = () => {
               <Route path="/faq" element={<FAQPageWrapper />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/shipping" element={<ShippingPage />} />
             </Routes>

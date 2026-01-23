@@ -11,9 +11,12 @@ const Footer: React.FC = () => {
             <a href="#home" className="font-serif text-3xl tracking-tighter text-black font-semibold mb-8 block">
               Eyira
             </a>
-            <p className="font-sans text-[11px] tracking-widest text-gray-400 uppercase leading-relaxed">
+            <p className="font-sans text-[11px] tracking-widest text-gray-400 uppercase leading-relaxed mb-8">
               There's rice at home.
             </p>
+            <a href="/about" className="font-sans text-[11px] tracking-[0.2em] uppercase font-semibold border-b border-black pb-1 hover:opacity-50 transition-opacity">
+              Our Story
+            </a>
           </div>
 
 
