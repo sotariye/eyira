@@ -18,8 +18,8 @@ const Hero: React.FC = () => {
           The Jollof Base. <br />
           <span className="italic font-normal text-gray-300">And Beyond.</span>
         </h1>
-        <p className="font-sans text-lg md:text-xl text-eyira-grey mb-12 font-light leading-relaxed max-w-2xl mx-auto">
-          We created this smoky tomato reduction for the perfect pot of rice, but it didn't stay there. From red stews to savory pasta, this is the versatile West African foundation your pantry has been missing.
+        <p className="font-sans text-lg md:text-xl text-eyira-grey mb-12 font-light leading-relaxed max-w-xl mx-auto">
+          Our well-seasoned base turns your pantry staple into authentic Nigerian Jollof—without the stress.
         </p>
         <div className="flex flex-col items-center gap-8">
           <a
