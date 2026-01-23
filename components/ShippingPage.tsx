@@ -30,12 +30,7 @@ const ShippingPage: React.FC = () => {
                     </p>
                 </section>
 
-                <section>
-                    <h2 className="font-serif text-2xl text-black mb-4 normal-case">Local Pickup</h2>
-                    <p>
-                        We offer free local pickup from our Ottawa Kitchen. If you select "Pickup" at checkout, you will receive an email notification when your order is ready with specific pickup instructions and address details. Pickup hours are typically Monday-Friday, 10am-4pm.
-                    </p>
-                </section>
+
 
                 <section>
                     <h2 className="font-serif text-2xl text-black mb-4 normal-case">International Shipping</h2>
