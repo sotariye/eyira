@@ -9,7 +9,7 @@ const AboutPage: React.FC = () => {
         <div className="bg-white min-h-screen animate-in fade-in duration-700">
             {/* Header / Hero */}
             <div className="pt-36 md:pt-48 pb-12 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto text-center">
-                <span className="font-sans text-[11px] tracking-[0.4em] text-gray-400 block mb-8 uppercase font-medium">Eyira. The Foundation.</span>
+                <span className="font-sans text-[11px] tracking-[0.4em] text-gray-400 block mb-8 uppercase font-medium">our story</span>
                 <h1 className="font-serif text-5xl md:text-7xl text-black font-medium leading-tight max-w-5xl mx-auto">
                     We did the hard part. <br />
                     <span className="italic text-gray-300">You get the credit.</span>
