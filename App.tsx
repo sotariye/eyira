@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Introduction from './components/Introduction';
 import ProductGrid from './components/ProductGrid';
 import HowToCook from './components/HowToCook';
 import Ingredients from './components/Ingredients';
@@ -17,6 +16,7 @@ import SuccessPage from './components/SuccessPage';
 import ShippingPage from './components/ShippingPage';
 import { CartProvider } from './context/CartContext';
 import CartDrawer from './components/CartDrawer';
+import SEO from './components/SEO';
 
 // Wrapper to handle product page params
 const ProductPageWrapper = () => {
@@ -48,14 +48,12 @@ const Home = () => {
   );
 };
 
-import { TrustTicker } from './components/TrustTicker';
-
 const App: React.FC = () => {
   return (
     <Router>
       <CartProvider>
-
         <div className="min-h-screen flex flex-col font-sans selection:bg-black selection:text-white bg-white">
+          <SEO />
           <Navbar />
           <CartDrawer />
 
