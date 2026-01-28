@@ -3,11 +3,11 @@ import React from 'react';
 const Hero: React.FC = () => {
   return (
     <section id="home" className="pt-48 pb-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center scroll-mt-24">
-      <div className="w-full aspect-[16/8] bg-gray-50 mb-16 overflow-hidden relative border border-gray-100">
+      <div className="w-full bg-gray-50 mb-16 overflow-hidden relative border border-gray-100">
         <img
           src="/images/hero.jpg"
           alt="Artisanal Kitchen"
-          className="w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-[3000ms]"
+          className="w-full h-auto block grayscale-[20%] hover:scale-105 transition-transform duration-[3000ms]"
         />
         <div className="absolute inset-0 bg-black/5"></div>
       </div>
