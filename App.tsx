@@ -18,6 +18,8 @@ import { CartProvider } from './context/CartContext';
 import CartDrawer from './components/CartDrawer';
 import SEO from './components/SEO';
 
+import { TrustTicker } from './components/TrustTicker';
+
 // Wrapper to handle product page params
 const ProductPageWrapper = () => {
   const { id } = useParams();
@@ -37,6 +39,7 @@ const Home = () => {
   return (
     <>
       <Hero />
+      <TrustTicker />
       <ProductGrid onProductClick={(id) => navigate(`/product/${id}`)} />
       <HowToCook />
       <div className="h-12 md:h-20" />
