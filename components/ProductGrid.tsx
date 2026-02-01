@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 interface ProductGridProps {
@@ -69,12 +70,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
         {/* Product 1 & 2: Staggered Pair */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
           <div className="md:col-span-5 flex flex-col">
-            <div
-              className="aspect-[4/5] bg-gray-50 border border-gray-100 overflow-hidden mb-12 cursor-pointer group"
-              onClick={() => onProductClick(products[0].id)}
+            <Link
+              to={`/product/${products[0].id}`}
+              className="aspect-[4/5] bg-gray-50 border border-gray-100 overflow-hidden mb-12 cursor-pointer group block"
             >
               <img src={products[0].img} alt={products[0].name} className="w-full h-full object-cover opacity-90 grayscale-[10%] group-hover:scale-105 transition-transform duration-[2000ms]" />
-            </div>
+            </Link>
             <div className="px-2 text-left">
               <span className="font-sans text-[11px] tracking-[0.3em] text-gray-500 mb-4 block uppercase font-medium">{products[0].size}</span>
               <h4 className="font-serif text-3xl text-eyira-grey mb-4 font-medium">{products[0].name}</h4>
@@ -93,12 +94,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
           </div>
 
           <div className="md:col-span-6 md:col-start-7 md:mt-48 flex flex-col">
-            <div
-              className="aspect-[4/5] bg-gray-50 border border-gray-100 overflow-hidden mb-12 cursor-pointer group"
-              onClick={() => onProductClick(products[1].id)}
+            <Link
+              to={`/product/${products[1].id}`}
+              className="aspect-[4/5] bg-gray-50 border border-gray-100 overflow-hidden mb-12 cursor-pointer group block"
             >
               <img src={products[1].img} alt={products[1].name} className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-[2000ms]" />
-            </div>
+            </Link>
             <div className="px-2 text-left">
               <span className="font-sans text-[11px] tracking-[0.3em] text-gray-500 mb-4 block uppercase font-medium">{products[1].size}</span>
               <h4 className="font-serif text-4xl text-eyira-grey mb-4 font-medium">{products[1].name}</h4>
@@ -119,12 +120,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ onProductClick }) => {
 
         {/* Product 3: Large Central Anchor */}
         <div className="flex flex-col md:flex-row items-center gap-16 md:gap-32 pt-24">
-          <div
-            className="w-full aspect-square md:aspect-[3/2] bg-gray-50 mb-12 border border-gray-100 overflow-hidden grayscale-[0%] transition-all duration-700 cursor-pointer"
-            onClick={() => onProductClick(products[2].id)}
+          <Link
+            to={`/product/${products[2].id}`}
+            className="w-full aspect-square md:aspect-[3/2] bg-gray-50 mb-12 border border-gray-100 overflow-hidden grayscale-[0%] transition-all duration-700 cursor-pointer block"
           >
             <img src={products[2].img} alt={products[2].name} className="w-full h-full object-cover opacity-90" />
-          </div>
+          </Link>
           <div className="w-full md:w-4/12 flex flex-col items-start order-2 md:order-1 text-left">
             <span className="font-sans text-[11px] tracking-[0.4em] text-gray-500 mb-6 uppercase font-medium">{products[2].size}</span>
             <h4 className="font-serif text-5xl text-eyira-grey mb-6 font-medium leading-tight">{products[2].name}</h4>
