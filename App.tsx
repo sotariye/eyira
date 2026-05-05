@@ -6,7 +6,7 @@ import ProductGrid from './components/ProductGrid';
 import HowToCook from './components/HowToCook';
 import Ingredients from './components/Ingredients';
 import Footer from './components/Footer';
-import RecipeHelper from './components/RecipeHelper';
+
 import ProductPage from './components/ProductPage';
 import FAQPage from './components/FAQPage';
 import TermsPage from './components/TermsPage';
@@ -45,8 +45,7 @@ const Home = () => {
       <div className="h-12 md:h-20" />
       <Ingredients />
       <div className="h-12 md:h-20" />
-      <RecipeHelper />
-      <div className="h-12 md:h-20" />
+
     </>
   );
 };
